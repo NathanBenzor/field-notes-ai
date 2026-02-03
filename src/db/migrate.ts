@@ -1,7 +1,10 @@
 import { dbPromise } from "./client";
 
+// Perform DB migrations to ensure the schema is up-to-date
+// This function checks the current schema version and applies
+// necessary migrations in sequence to bring the DB to the latest version
 export async function migrate() {
-  const db = await dbPromise;
+  const db = await dbPromise; // Get the shared DB instance
 
   // Good default for performance + reliability on mobile
   await db.execAsync("PRAGMA journal_mode = WAL;");
